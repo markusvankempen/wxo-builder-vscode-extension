@@ -16,7 +16,7 @@
     "email": "markus.van.kempen@gmail.com"
   },
   "license": "Apache-2.0",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "engines": {
     "vscode": "^1.85.0"
   },
@@ -379,7 +379,10 @@
         },
         "wxo-builder.scope": {
           "type": "string",
-          "enum": ["draft", "live"],
+          "enum": [
+            "draft",
+            "live"
+          ],
           "default": "draft",
           "markdownDescription": "Environment scope: draft (development) or live (production). Tools and connections are created/edited in this scope."
         }
