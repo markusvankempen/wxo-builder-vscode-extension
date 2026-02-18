@@ -8,7 +8,7 @@ This extension integrates IBM Watson Orchestrate into Visual Studio Code, allowi
 
 *   **VS Code Marketplace** (when published): Search for "WxO Builder" in the Extensions view.
 *   **From VSIX**: Download a `.vsix` package and use **Install from VSIX…** from the Extensions menu.
-*   **Develop**: Clone the repo, run `npm install` and `npm run compile`, then press **F5** to launch the Extension Development Host.
+*   **Develop**: Clone the [repository](https://github.com/markusvankempen/wxo-builder-vscode-extension), run `npm install` and `npm run compile`, then press **F5** to launch the Extension Development Host.
 
 ## Features
 
