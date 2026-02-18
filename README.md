@@ -2,98 +2,102 @@
 
 > **Note:** This extension is currently in **Beta**. Features are subject to change, and you may encounter issues. Please report any bugs or feedback to the [repository issues page](https://github.com/markusvankempen/wxo-builder-vscode-extension/issues).
 
-This extension integrates IBM Watson Orchestrate into Visual Studio Code, allowing you to build, deploy, and manage tools, agents, and connections directly from your IDE.
+**WxO Builder** is the essential toolkit for developers building on **IBM Watsonx Orchestrate**. It integrates directly into Visual Studio Code, allowing you to create, test, deploy, and manage your AI tools, agents, and connections without leaving your IDE.
 
-## Installation
+---
 
-*   **VS Code Marketplace** (when published): Search for "WxO Builder" in the Extensions view.
-*   **From VSIX**: Download a `.vsix` package and use **Install from VSIX…** from the Extensions menu.
-*   **Develop**: Clone the [repository](https://github.com/markusvankempen/wxo-builder-vscode-extension), run `npm install` and `npm run compile`, then press **F5** to launch the Extension Development Host.
+## 🚀 Key Features
 
-## Features
+### 🛠️ Tool Creator & Manager
+Build robust tools from scratch or templates.
+- **Visual & Code Editors**: Toggle between a user-friendly Form view and a powerful JSON editor for your OpenAPI specs.
+  ![JSON Editor](resources/screenshots/JsonEditor.png)
+- **Start Fast**: Use built-in templates (Weather, Finance, Time, etc.) or import existing OpenAPI files.
+  ![Create Tools From Templates](resources/screenshots/CreateToolsFormTemplates.png)
+- **Import from URL**: Quickly onboard public APIs.
+  ![Create Tools From URLs](resources/screenshots/CreateToolsFromURLs.png)
 
-### 🛠️ **Tool Creator & Manager**
-Build and manage Watsonx Orchestrate tools with a full-featured editor.
+### 🧪 Advanced Testing (Local & Remote)
+Verify your tools before deployment.
+- **Run Local**: Test the API endpoint directly from VS Code to ensure the backend is working.
+- **Run Remote**: Execute the tool *through* Watson Orchestrate's engine. This verifies authentication, parameter mapping, and agent response generation.
+  ![Tool Testing](resources/screenshots/ToolLocalAndRemoteTesting.png)
+- **Copy as cURL**: Debug easily by copying the exact request as a cURL command.
+  ![Copy Tool Function](resources/screenshots/CopyToolFunction.png)
 
-*   **Create Tools Easily**:
-    *   Start from a **blank template** or use **built-in templates**: Weather (weatherapi.com), World Time, Dad Jokes, Aviation Weather METAR, News Search, University Search, Zip Code, Currency Exchange, Yahoo Finance.
-    *   **Load Template** or **Import OpenAPI File** to get started quickly.
-*   **Form View**: Edit tool metadata (Title, Description, Version, Permission, Restrictions, Tags).
-*   **JSON Editor**:
-    *   Full control over the OpenAPI definition.
-    *   **Export OpenAPI File** to save the spec locally.
-    *   **Validate** — checks OpenAPI and WxO schema structure.
-    *   **View Diff** (edit mode) — compare original vs current before saving.
-*   **Test & Debug**:
-    *   **Run Local**: Call the API endpoint directly to verify before deployment.
-    *   **Run Remote**: Invoke via Watson Orchestrate with connection credentials injected.
-    *   **Copy as cURL**: Copy the last test request as a cURL command.
-    *   **Generate from Response**: Auto-generate schema from actual API responses.
+### 🤖 Agent Management
+Create and orchestrate AI agents.
+- **Drag & Drop**: Easily assign tools to agents.
+  ![Drag & Drop Tools](resources/screenshots/DragDropToolsOntoAgents.png)
+- **Chat Interface**: Interact with your agents and tools directly within VS Code to test the end-user experience.
+  ![Agent Chat](resources/screenshots/AgentChatwithTools.png)
 
-### 🔗 **Connections & Connectors**
-*   **Active Connections**: View configured app connections with status (✅ / ❌).
-*   **Connectors Catalog**: Browse 100+ application connectors.
-*   **Configure Connection**: Right-click a tool to configure credentials in the WxO UI.
+---
 
-### 🤖 **Agents & Flows**
-*   **Agents**: List, create, edit, and delete AI assistants.
-*   **Flows**: List and manage orchestration flows.
+## 📦 Installation
 
-### 📊 **Status & Diagnostics**
-*   **Health Checks**: Configuration, authentication, and API connectivity.
-*   **Configure** (Status & Diagnostics view only): Set API Key, Instance URL, and scope (draft/live).
-*   **Scope Indicator**: Shows whether you're in draft or live environment.
+1.  **From Repository**:
+    -   Clone the [repository](https://github.com/markusvankempen/wxo-builder-vscode-extension).
+    -   Run `npm install` and `npm run compile`.
+    -   Press **F5** to launch the Extension Development Host.
+2.  **From VSIX** (Coming Soon): Download the `.vsix` release and install via "Install from VSIX..." in VS Code.
 
-## Getting Started
+---
 
-1.  **Open the WxO Builder** view in the Activity Bar.
-2.  **Configure**: Open **Status & Diagnostics**, click **Configure**, or open Settings (`Cmd+,` / `Ctrl+,`) and search for `wxo-builder`.
-    *   **API Key**: Your IBM Cloud API Key.
-    *   **Instance URL**: Your Watson Orchestrate instance URL.
-    *   **Scope**: `draft` (development) or `live` (production).
-3.  **Explore your Resources**:
-    *   Your existing Tools, Agents, and Flows will appear in the sidebar automatically.
-4.  **Test a Tool**:
-    *   Find a tool in the **Tools** view.
-    *   Click the **▶ (Test Tool)** icon or right-click and select **Test Tool**.
-    *   Enter any required parameters in the input box.
-    *   Results will appear in the **WxO Tool Output channel**.
-5.  **Manage Connections**:
-    *   Check the **Connections** view to see if your apps (like Slack) are connected.
-    *   Look for the **✅** icon. If you see **❌**, right-click the tool that requires it and select **Configure Connection**.
+## ⚡ Getting Started Workflow
 
-## Testing Tools (Local & Remote)
+### 1. Configure the Extension
+Open the **Status & Diagnostics** view.
+1.  Click **Configure**.
+2.  Enter your **IBM Cloud API Key** and **Watson Orchestrate Instance URL**.
+3.  Select your scope: `draft` (for development) or `live` (for production).
+   *(Tip: Use `draft` to avoid affecting production users.)*
 
-The extension allows two modes of testing:
-1.  **Local (Direct HTTP)**: Calls the API endpoint directly from VS Code. Useful for verifying the API spec before deployment.
-2.  **Tool (WxO)**: Calls the deployed tool via Watson Orchestrate. Verifies that the tool is correctly deployed and the binding is working.
+### 2. Create a Tool
+1.  Go to the **Tools** view.
+2.  Click the **+ (Create Tool)** icon.
+3.  Choose a template (e.g., "World Time") or "Blank Tool".
+4.  Edit the OpenAPI specification in the JSON editor.
+   ![Edit Parameters](resources/screenshots/ChangeToolQueryParameters.png)
+5.  Click **Save / Deploy** to register the tool with Watson Orchestrate.
 
-## Troubleshooting
+### 3. Test the Tool
+1.  Right-click your new tool and select **Test Tool**.
+2.  **Local Test**: Click "Run Local" to hit the API directly.
+3.  **Remote Test**: Click "Run Remote" to have Watson Orchestrate invoke it. (Requires an Agent ID configured in settings).
 
-- **Tools not appearing**: 
-  - Check the **Status & Diagnostics** view.
-  - Click **Refresh** at the top of the Tools view.
-- **403 Forbidden on Update**: 
-  - Some tool fields are read-only. The extension handles this by only sending modifiable fields, but ensuring you have `read_write` permission on the tool is essential.
-- **500 Error on Create**:
-  - Often caused by invalid schemas. Try using the "Generate from Response" feature in the Test tab to ensure your schema matches the API payload.
+### 4. Create an Agent & Assign Tools
+1.  Go to the **Agents** view.
+2.  Click **+ (Create Agent)**.
+3.  Drag your tool from the Tools view and drop it onto the Agent.
+4.  Start a chat to test the agent's ability to use the tool.
 
-For more help, click the **Book** icon (Documentation) in the generic menu.
+---
 
-## Configuration Reference
+## 🔧 Configuration Reference
 
 | Setting | Description |
-|--------|-------------|
-| `wxo-builder.apiKey` | IBM Cloud API Key for Watson Orchestrate |
-| `wxo-builder.instanceUrl` | Watson Orchestrate instance URL |
-| `wxo-builder.scope` | Environment: `draft` or `live` |
-| `wxo-builder.agentId` | Optional agent ID for remote tool testing |
-| `wxo-builder.debug` | Enable debug logging |
+| :--- | :--- |
+| `wxo-builder.apiKey` | Your IBM Cloud API Key for Watson Orchestrate authentication. |
+| `wxo-builder.instanceUrl` | The base URL of your Watson Orchestrate instance. |
+| `wxo-builder.scope` | `draft` or `live`. Controls where resources are created. |
+| `wxo-builder.agentId` | (Optional) The ID of an agent to use for "Run Remote" tests. |
+| `wxo-builder.debug` | Enable verbose logging to the "WxO Builder" output channel. |
 
-## License
+---
 
+## ❓ Troubleshooting
+
+| Issue | Solution |
+| :--- | :--- |
+| **Tools list is empty** | Check your API Key and Instance URL in Settings. Click the Refresh icon. |
+| **403 Forbidden** | Ensure your API Key has the correct permissions for the selected environment (draft/live). |
+| **500 Error on Create** | Validate your OpenAPI spec. Use the "Validate" button in the editor. |
+
+---
+
+## 📝 License
 Apache-2.0 — See [LICENSE](LICENSE) for details.
 
-## Author
-
+## 👨‍💻 Author
 **Markus van Kempen**
