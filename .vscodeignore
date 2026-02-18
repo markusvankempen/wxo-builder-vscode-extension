@@ -1,0 +1,16 @@
+.vscode/**
+.vscode-test/**
+out/test/**
+src/**
+.gitignore
+vsc-extension-quickstart.md
+**/*.map
+.DS_Store
+# Exclude env/secrets from VSIX
+**/.env
+**/.env.*
+**/*env*.keys
+**/*credentials*
+**/*secrets*
+# Ensure server node_modules are included (if server dir exists)
+!server/node_modules/**

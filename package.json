@@ -1,0 +1,432 @@
+{
+  "name": "wxo-builder",
+  "displayName": "WxO Builder",
+  "description": "(BETA) Watsonx Orchestrate Development Tool: Build, Deploy, and Manage resources directly from VS Code.",
+  "publisher": "markusvankempen",
+  "author": {
+    "name": "Markus van Kempen",
+    "email": "markus.van.kempen@gmail.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/markusvankempen/wxo-builder-vscode-extension.git"
+  },
+  "bugs": {
+    "url": "https://github.com/markusvankempen/wxo-builder-vscode-extension/issues",
+    "email": "markus.van.kempen@gmail.com"
+  },
+  "license": "Apache-2.0",
+  "version": "0.0.3",
+  "engines": {
+    "vscode": "^1.85.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "icon": "resources/icon.png",
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "main": "./out/extension.js",
+  "contributes": {
+    "viewsContainers": {
+      "activitybar": [
+        {
+          "id": "watsonx-orchestrate",
+          "title": "WxO Builder",
+          "icon": "resources/activity-icon.svg"
+        }
+      ]
+    },
+    "views": {
+      "watsonx-orchestrate": [
+        {
+          "id": "watsonx-skills",
+          "name": "Tools",
+          "icon": "$(extensions)"
+        },
+        {
+          "id": "watsonx-agents",
+          "name": "Agents",
+          "icon": "$(hubot)"
+        },
+        {
+          "id": "watsonx-flows",
+          "name": "Flows",
+          "icon": "$(symbol-event)"
+        },
+        {
+          "id": "watsonx-connections",
+          "name": "Connections & Connectors",
+          "icon": "$(plug)"
+        },
+        {
+          "id": "watsonx-diagnostics",
+          "name": "Status & Diagnostics",
+          "icon": "$(pulse)"
+        }
+      ]
+    },
+    "commands": [
+      {
+        "command": "watsonx.configure",
+        "title": "Configure WxO Builder",
+        "icon": "$(settings-gear)"
+      },
+      {
+        "command": "watsonx.openExtension",
+        "title": "Open Extension",
+        "icon": "$(extensions)"
+      },
+      {
+        "command": "watsonx.refreshSkills",
+        "title": "Refresh Tools",
+        "icon": "$(refresh)"
+      },
+      {
+        "command": "watsonx.createTool",
+        "title": "Create Tool",
+        "icon": "$(plus)"
+      },
+      {
+        "command": "watsonx.deploySkill",
+        "title": "Deploy Tool"
+      },
+      {
+        "command": "watsonx.editSkill",
+        "title": "Edit Tool",
+        "icon": "$(edit)"
+      },
+      {
+        "command": "watsonx.copySkill",
+        "title": "Copy Tool",
+        "icon": "$(copy)"
+      },
+      {
+        "command": "watsonx.deleteSkill",
+        "title": "Delete Tool",
+        "icon": "$(trash)"
+      },
+      {
+        "command": "watsonx.viewSkillInfo",
+        "title": "View Tool Info",
+        "icon": "$(info)"
+      },
+      {
+        "command": "watsonx.openToolConnection",
+        "title": "Configure Connection",
+        "icon": "$(key)"
+      },
+      {
+        "command": "watsonx.testTool",
+        "title": "Test Tool"
+      },
+      {
+        "command": "watsonx.viewConnectionDetails",
+        "title": "View Connection Details",
+        "icon": "$(info)"
+      },
+      {
+        "command": "watsonx.activateSkill",
+        "title": "Activate Tool"
+      },
+      {
+        "command": "watsonx.deactivateSkill",
+        "title": "Deactivate Tool"
+      },
+      {
+        "command": "watsonx.createAgent",
+        "title": "Create Agent",
+        "icon": "$(plus)"
+      },
+      {
+        "command": "watsonx.editAgent",
+        "title": "Edit Agent",
+        "icon": "$(edit)"
+      },
+      {
+        "command": "watsonx.deleteAgent",
+        "title": "Delete Agent",
+        "icon": "$(trash)"
+      },
+      {
+        "command": "watsonx.editFlow",
+        "title": "Edit Flow",
+        "icon": "$(edit)"
+      },
+      {
+        "command": "watsonx.deleteFlow",
+        "title": "Delete Flow",
+        "icon": "$(trash)"
+      },
+      {
+        "command": "watsonx.refreshConnections",
+        "title": "Refresh Connections",
+        "icon": "$(refresh)"
+      },
+      {
+        "command": "watsonx.deleteConnection",
+        "title": "Delete Connection",
+        "icon": "$(trash)"
+      },
+      {
+        "command": "watsonx.addConnection",
+        "title": "Connect",
+        "icon": "$(plus)"
+      },
+      {
+        "command": "watsonx.openDiagnostics",
+        "title": "WxO Builder: Open Diagnostics Panel",
+        "icon": "$(beaker)"
+      },
+      {
+        "command": "watsonx.openDocumentation",
+        "title": "Documentation / Help",
+        "icon": "$(book)"
+      },
+      {
+        "command": "watsonx.openChangelog",
+        "title": "Changelog",
+        "icon": "$(history)"
+      }
+    ],
+    "menus": {
+      "view/title": [
+        {
+          "command": "watsonx.refreshSkills",
+          "when": "view == watsonx-skills",
+          "group": "navigation"
+        },
+        {
+          "command": "watsonx.createTool",
+          "when": "view == watsonx-skills",
+          "group": "navigation"
+        },
+        {
+          "command": "watsonx.refreshConnections",
+          "when": "view == watsonx-connections",
+          "group": "navigation"
+        },
+        {
+          "command": "watsonx.openDocumentation",
+          "when": "view == watsonx-skills",
+          "group": "secondary"
+        },
+        {
+          "command": "watsonx.openChangelog",
+          "when": "view == watsonx-skills",
+          "group": "secondary"
+        },
+        {
+          "command": "watsonx.openDocumentation",
+          "when": "view == watsonx-agents",
+          "group": "secondary"
+        },
+        {
+          "command": "watsonx.openChangelog",
+          "when": "view == watsonx-agents",
+          "group": "secondary"
+        },
+        {
+          "command": "watsonx.openDocumentation",
+          "when": "view == watsonx-flows",
+          "group": "secondary"
+        },
+        {
+          "command": "watsonx.openChangelog",
+          "when": "view == watsonx-flows",
+          "group": "secondary"
+        },
+        {
+          "command": "watsonx.createAgent",
+          "when": "view == watsonx-agents",
+          "group": "navigation"
+        },
+        {
+          "command": "watsonx.openExtension",
+          "title": "Extension",
+          "group": "navigation",
+          "when": "view == watsonx-skills"
+        },
+        {
+          "command": "watsonx.openExtension",
+          "title": "Extension",
+          "group": "navigation",
+          "when": "view == watsonx-agents"
+        },
+        {
+          "command": "watsonx.openExtension",
+          "title": "Extension",
+          "group": "navigation",
+          "when": "view == watsonx-connections"
+        },
+        {
+          "command": "watsonx.openExtension",
+          "title": "Extension",
+          "group": "navigation",
+          "when": "view == watsonx-flows"
+        },
+        {
+          "command": "watsonx.configure",
+          "title": "Configure WxO Builder",
+          "group": "navigation",
+          "when": "view == watsonx-diagnostics"
+        },
+        {
+          "command": "watsonx.openExtension",
+          "title": "Extension",
+          "group": "navigation",
+          "when": "view == watsonx-diagnostics"
+        }
+      ],
+      "view/item/context": [
+        {
+          "command": "watsonx.editSkill",
+          "when": "view == watsonx-skills && viewItem =~ /skill/",
+          "group": "inline"
+        },
+        {
+          "command": "watsonx.copySkill",
+          "when": "view == watsonx-skills && viewItem =~ /skill/",
+          "group": "inline"
+        },
+        {
+          "command": "watsonx.deleteSkill",
+          "when": "view == watsonx-skills && viewItem =~ /skill/",
+          "group": "inline"
+        },
+        {
+          "command": "watsonx.testTool",
+          "when": "view == watsonx-skills && viewItem =~ /skill/",
+          "group": "navigation"
+        },
+        {
+          "command": "watsonx.openToolConnection",
+          "when": "view == watsonx-skills && viewItem == skillWithConnection",
+          "group": "inline"
+        },
+        {
+          "command": "watsonx.viewSkillInfo",
+          "when": "view == watsonx-skills && viewItem =~ /skill/",
+          "group": "navigation"
+        },
+        {
+          "command": "watsonx.activateSkill",
+          "when": "view == watsonx-skills && viewItem =~ /skill/",
+          "group": "2_actions"
+        },
+        {
+          "command": "watsonx.deactivateSkill",
+          "when": "view == watsonx-skills && viewItem =~ /skill/",
+          "group": "2_actions"
+        },
+        {
+          "command": "watsonx.editAgent",
+          "when": "view == watsonx-agents",
+          "group": "inline"
+        },
+        {
+          "command": "watsonx.deleteAgent",
+          "when": "view == watsonx-agents",
+          "group": "inline"
+        },
+        {
+          "command": "watsonx.editFlow",
+          "when": "view == watsonx-flows && viewItem == flow",
+          "group": "inline"
+        },
+        {
+          "command": "watsonx.deleteFlow",
+          "when": "view == watsonx-flows && viewItem == flow",
+          "group": "inline"
+        },
+        {
+          "command": "watsonx.deleteConnection",
+          "when": "view == watsonx-connections && viewItem == connection",
+          "group": "inline"
+        },
+        {
+          "command": "watsonx.viewConnectionDetails",
+          "when": "view == watsonx-connections && viewItem =~ /connection/",
+          "group": "navigation"
+        },
+        {
+          "command": "watsonx.addConnection",
+          "when": "view == watsonx-connections && viewItem == connector",
+          "group": "inline"
+        }
+      ]
+    },
+    "configuration": {
+      "title": "WxO Builder",
+      "properties": {
+        "wxo-builder.apiKey": {
+          "type": "string",
+          "markdownDescription": "The API Key for Watson Orchestrate. Corresponds to `WO_API_KEY`."
+        },
+        "wxo-builder.instanceUrl": {
+          "type": "string",
+          "markdownDescription": "The Instance URL for Watson Orchestrate. Corresponds to `WO_INSTANCE_URL`."
+        },
+        "wxo-builder.debug": {
+          "type": "boolean",
+          "default": true,
+          "markdownDescription": "Enable debug logging to the Extension Host console. Filter by `[WxO Editor]` or `[WxO]`."
+        },
+        "wxo-builder.agentId": {
+          "type": "string",
+          "markdownDescription": "Optional agent ID for remote tool runs. The default Orchestrate Assistant may not have your tool — it can hallucinate instead of executing. Create an agent in WxO with this tool attached and set its ID here for real tool execution."
+        },
+        "wxo-builder.scope": {
+          "type": "string",
+          "enum": ["draft", "live"],
+          "default": "draft",
+          "markdownDescription": "Environment scope: draft (development) or live (production). Tools and connections are created/edited in this scope."
+        }
+      }
+    }
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "package": "vsce package",
+    "pretest": "npm run compile && npm run lint",
+    "lint": "eslint src --ext ts",
+    "lint:fix": "eslint src --ext ts --fix",
+    "format": "prettier --write \"src/**/*.ts\" \"*.json\" \"*.md\"",
+    "format:check": "prettier --check \"src/**/*.ts\" \"*.json\" \"*.md\"",
+    "check": "npm run lint && npm run format:check && npm run compile",
+    "fix": "npm run lint:fix && npm run format",
+    "test": "node ./out/test/runTest.js",
+    "prepare": "husky",
+    "compile:scripts": "tsc -p tsconfig.scripts.json",
+    "test:remote": "npm run compile:scripts && node out/scripts/test-remote-tool.js"
+  },
+  "devDependencies": {
+    "@commitlint/cli": "^20.4.1",
+    "@commitlint/config-conventional": "^20.4.1",
+    "@types/archiver": "^7.0.0",
+    "@types/mocha": "^10.0.6",
+    "@types/node": "20.x",
+    "@types/node-fetch": "^2.6.13",
+    "@types/vscode": "^1.85.0",
+    "@typescript-eslint/eslint-plugin": "^6.21.0",
+    "@typescript-eslint/parser": "^6.21.0",
+    "@vscode/test-electron": "^2.3.8",
+    "eslint": "^8.57.1",
+    "eslint-config-prettier": "^10.1.8",
+    "eslint-plugin-prettier": "^5.5.5",
+    "glob": "^10.3.10",
+    "husky": "^9.1.7",
+    "lint-staged": "^16.2.7",
+    "mocha": "^10.2.0",
+    "prettier": "^3.8.1",
+    "typescript": "^5.3.3",
+    "vsce": "^2.15.0"
+  },
+  "dependencies": {
+    "archiver": "^7.0.1",
+    "node-fetch": "^3.3.2"
+  }
+}

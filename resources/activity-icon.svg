@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" fill="none">
+  <!-- Stylized O -->
+  <circle cx="64" cy="64" r="32" stroke="currentColor" stroke-width="10" fill="none" opacity="0.4"/>
+
+  <!-- Stylized W -->
+  <path d="M30 48 L48 88 L64 56 L80 88 L98 48" stroke="currentColor" stroke-width="10" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+  
+  <!-- Dots -->
+  <circle cx="30" cy="48" r="5" fill="currentColor"/>
+  <circle cx="98" cy="48" r="5" fill="currentColor"/>
+  <circle cx="64" cy="56" r="5" fill="currentColor"/>
+</svg>
