@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" fill="none">
+  <!-- Dynamic Blue Gradient Background -->
+  <defs>
+    <linearGradient id="blueGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#0f62fe;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#0043ce;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  
+  <rect x="0" y="0" width="128" height="128" rx="24" fill="url(#blueGrad)"/>
+
+  <!-- "W" for Watson -->
+  <!-- White lines with nodes representing orchestration -->
+  <path d="M28 40 L44 88 L64 50 L84 88 L100 40" stroke="white" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
+  
+  <!-- Connection Nodes -->
+  <circle cx="28" cy="40" r="6" fill="white"/>
+  <circle cx="44" cy="88" r="6" fill="white"/>
+  <circle cx="64" cy="50" r="6" fill="white"/>
+  <circle cx="84" cy="88" r="6" fill="white"/>
+  <circle cx="100" cy="40" r="6" fill="white"/>
+
+  <!-- Gear/Builder element overlay (subtle) -->
+  <path d="M64 20 L68 28 L78 28 L80 38 L90 40" stroke="rgba(255,255,255,0.3)" stroke-width="2" fill="none"/>
+
+</svg>
