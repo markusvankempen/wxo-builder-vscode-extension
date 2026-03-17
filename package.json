@@ -1,0 +1,1645 @@
+{
+    "name": "wxo-builder",
+    "displayName": "WxO Builder",
+    "description": "Build, deploy, and manage IBM Watsonx Orchestrate AI agents, tools, and flows in VS Code. Create OpenAPI/Python tools, test locally & remotely, export as MCP server for Cursor/Claude, import Langflow flows.",
+    "publisher": "markusvankempen",
+    "author": {
+        "name": "Markus van Kempen",
+        "email": "markus.van.kempen@gmail.com"
+    },
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/markusvankempen/wxo-builder-vscode-extension.git"
+    },
+    "homepage": "https://github.com/markusvankempen/wxo-builder-vscode-extension#readme",
+    "preview": false,
+    "bugs": {
+        "url": "https://github.com/markusvankempen/wxo-builder-vscode-extension/issues",
+        "email": "markus.van.kempen@gmail.com"
+    },
+    "license": "Apache-2.0",
+    "version": "1.6.4",
+    "engines": {
+        "vscode": "^1.85.0"
+    },
+    "categories": [
+        "Machine Learning",
+        "Data Science",
+        "Programming Languages",
+        "Visualization",
+        "Testing"
+    ],
+    "keywords": [
+        "IBM",
+        "Watson",
+        "Watsonx",
+        "Orchestrate",
+        "Watsonx Orchestrate",
+        "AI",
+        "Agent",
+        "AI agent",
+        "Automation",
+        "Low-Code",
+        "Skill",
+        "Tool",
+        "Workflow",
+        "WxO",
+        "Builder",
+        "GenAI",
+        "LLM",
+        "Agentic AI",
+        "OpenAPI",
+        "Swagger",
+        "IBM Cloud",
+        "MCP",
+        "Model Context Protocol",
+        "Cursor",
+        "Claude",
+        "Langflow",
+        "Python tool",
+        "AI SDK"
+    ],
+    "qna": "https://github.com/markusvankempen/wxo-builder-vscode-extension/issues",
+    "badges": [
+        {
+            "url": "https://img.shields.io/visual-studio-marketplace/v/markusvankempen.wxo-builder?label=VS%20Code%20Marketplace&color=brightgreen&logo=visualstudiocode",
+            "href": "https://marketplace.visualstudio.com/items?itemName=markusvankempen.wxo-builder",
+            "description": "Marketplace version"
+        },
+        {
+            "url": "https://img.shields.io/visual-studio-marketplace/d/markusvankempen.wxo-builder",
+            "href": "https://marketplace.visualstudio.com/items?itemName=markusvankempen.wxo-builder",
+            "description": "Downloads"
+        }
+    ],
+    "icon": "resources/icon.png",
+    "galleryBanner": {
+        "color": "#054ADA",
+        "theme": "dark"
+    },
+    "activationEvents": [
+        "onStartupFinished"
+    ],
+    "main": "./dist/extension.js",
+    "contributes": {
+        "snippets": [
+            {
+                "language": "json",
+                "path": "./snippets/wxo-settings.code-snippets"
+            },
+            {
+                "language": "jsonc",
+                "path": "./snippets/wxo-settings.code-snippets"
+            }
+        ],
+        "viewsContainers": {
+            "activitybar": [
+                {
+                    "id": "watsonx-orchestrate",
+                    "title": "WxO Builder",
+                    "icon": "resources/activity-icon.svg"
+                }
+            ]
+        },
+        "views": {
+            "watsonx-orchestrate": [
+                {
+                    "id": "watsonx-skills",
+                    "name": "Tools",
+                    "icon": "$(extensions)"
+                },
+                {
+                    "id": "watsonx-agents",
+                    "name": "Agents",
+                    "icon": "$(hubot)"
+                },
+                {
+                    "id": "watsonx-flows",
+                    "name": "Flows",
+                    "icon": "$(symbol-event)"
+                },
+                {
+                    "id": "watsonx-connections",
+                    "name": "Connections & Connectors",
+                    "icon": "$(plug)"
+                },
+                {
+                    "id": "watsonx-plugins",
+                    "name": "Plugins",
+                    "icon": "$(extensions)"
+                },
+                {
+                    "id": "watsonx-toolkits",
+                    "name": "Toolkits (MCP)",
+                    "icon": "$(server)"
+                },
+                {
+                    "id": "watsonx-knowledge-bases",
+                    "name": "Knowledge Bases",
+                    "icon": "$(book)"
+                },
+                {
+                    "id": "watsonx-evaluations",
+                    "name": "Evaluations",
+                    "icon": "$(beaker)"
+                },
+                {
+                    "id": "watsonx-diagnostics",
+                    "name": "Status & Diagnostics",
+                    "icon": "$(pulse)"
+                },
+                {
+                    "id": "watsonx-project-dir",
+                    "name": "WxO Project Dir",
+                    "icon": "$(folder-opened)"
+                }
+            ]
+        },
+        "commands": [
+            {
+                "command": "watsonx.configure",
+                "title": "Configure WxO Builder",
+                "icon": "$(settings-gear)"
+            },
+            {
+                "command": "watsonx.selectSystem",
+                "title": "Select System",
+                "icon": "$(server)"
+            },
+            {
+                "command": "watsonx.setSystemApiKey",
+                "title": "Set API Key for System",
+                "icon": "$(key)"
+            },
+            {
+                "command": "watsonx.openExtension",
+                "title": "Open Extension",
+                "icon": "$(extensions)"
+            },
+            {
+                "command": "watsonx.refreshSkills",
+                "title": "Refresh Tools",
+                "icon": "$(refresh)"
+            },
+            {
+                "command": "watsonx.searchTools",
+                "title": "Search Tools",
+                "icon": "$(search)"
+            },
+            {
+                "command": "watsonx.searchAgents",
+                "title": "Search Agents",
+                "icon": "$(search)"
+            },
+            {
+                "command": "watsonx.searchConnections",
+                "title": "Search Connections",
+                "icon": "$(search)"
+            },
+            {
+                "command": "watsonx.createTool",
+                "title": "Create Tool",
+                "icon": "$(plus)"
+            },
+            {
+                "command": "watsonx.importLangflowFlow",
+                "title": "Import Langflow Flow",
+                "icon": "$(file-directory)"
+            },
+            {
+                "command": "watsonx.deploySkill",
+                "title": "Deploy Tool"
+            },
+            {
+                "command": "watsonx.editSkill",
+                "title": "Edit Tool",
+                "icon": "$(edit)"
+            },
+            {
+                "command": "watsonx.editPlugin",
+                "title": "Edit Plugin",
+                "icon": "$(edit)"
+            },
+            {
+                "command": "watsonx.copySkill",
+                "title": "Copy Tool",
+                "icon": "$(copy)"
+            },
+            {
+                "command": "watsonx.deleteSkill",
+                "title": "Delete Tool",
+                "icon": "$(trash)"
+            },
+            {
+                "command": "watsonx.exportTool",
+                "title": "Export Tool",
+                "icon": "$(export)"
+            },
+            {
+                "command": "watsonx.compare",
+                "title": "Compare",
+                "icon": "$(diff)"
+            },
+            {
+                "command": "watsonx.importTool",
+                "title": "Import Tool",
+                "icon": "$(file-add)"
+            },
+            {
+                "command": "watsonx.viewSkillInfo",
+                "title": "View Tool Info",
+                "icon": "$(info)"
+            },
+            {
+                "command": "watsonx.fixToolForCli",
+                "title": "Fix for CLI",
+                "icon": "$(tools)"
+            },
+            {
+                "command": "watsonx.reuploadOpenApiArtifact",
+                "title": "Re-upload OpenAPI artifact",
+                "icon": "$(cloud-upload)"
+            },
+            {
+                "command": "watsonx.fixToolsForCli",
+                "title": "Fix All Python Tools for CLI",
+                "icon": "$(tools)"
+            },
+            {
+                "command": "watsonx.openToolConnection",
+                "title": "Configure Connection",
+                "icon": "$(key)"
+            },
+            {
+                "command": "watsonx.testTool",
+                "title": "Test Tool"
+            },
+            {
+                "command": "watsonx.viewConnectionDetails",
+                "title": "View Connection Details",
+                "icon": "$(info)"
+            },
+            {
+                "command": "watsonx.createConnection",
+                "title": "Create Connection",
+                "icon": "$(plus)"
+            },
+            {
+                "command": "watsonx.activateSkill",
+                "title": "Activate Tool"
+            },
+            {
+                "command": "watsonx.deactivateSkill",
+                "title": "Deactivate Tool"
+            },
+            {
+                "command": "watsonx.createAgent",
+                "title": "Create Agent",
+                "icon": "$(plus)"
+            },
+            {
+                "command": "watsonx.editAgent",
+                "title": "Edit Agent",
+                "icon": "$(edit)"
+            },
+            {
+                "command": "watsonx.copyAgent",
+                "title": "Copy Agent",
+                "icon": "$(copy)"
+            },
+            {
+                "command": "watsonx.deleteAgent",
+                "title": "Delete Agent",
+                "icon": "$(trash)"
+            },
+            {
+                "command": "watsonx.exportAgent",
+                "title": "Export Agent",
+                "icon": "$(export)"
+            },
+            {
+                "command": "watsonx.importAgent",
+                "title": "Import Agent",
+                "icon": "$(file-add)"
+            },
+            {
+                "command": "watsonx.exportAgentAsMcpServer",
+                "title": "Export as MCP Server",
+                "icon": "$(extensions)"
+            },
+            {
+                "command": "watsonx.editFlow",
+                "title": "Edit Flow",
+                "icon": "$(edit)"
+            },
+            {
+                "command": "watsonx.searchFlows",
+                "title": "Search Flows",
+                "icon": "$(search)"
+            },
+            {
+                "command": "watsonx.createFlow",
+                "title": "Create Flow",
+                "icon": "$(add)"
+            },
+            {
+                "command": "watsonx.deleteFlow",
+                "title": "Delete Flow",
+                "icon": "$(trash)"
+            },
+            {
+                "command": "watsonx.exportFlow",
+                "title": "Export Flow",
+                "icon": "$(export)"
+            },
+            {
+                "command": "watsonx.importFlow",
+                "title": "Import Flow",
+                "icon": "$(file-add)"
+            },
+            {
+                "command": "watsonx.refreshConnections",
+                "title": "Refresh Connections",
+                "icon": "$(refresh)"
+            },
+            {
+                "command": "watsonx.deleteConnection",
+                "title": "Delete Connection",
+                "icon": "$(trash)"
+            },
+            {
+                "command": "watsonx.exportConnection",
+                "title": "Export Connection",
+                "icon": "$(export)"
+            },
+            {
+                "command": "watsonx.importConnection",
+                "title": "Import Connection",
+                "icon": "$(file-add)"
+            },
+            {
+                "command": "watsonx.addConnection",
+                "title": "Connect",
+                "icon": "$(plus)"
+            },
+            {
+                "command": "watsonx.openDiagnostics",
+                "title": "WxO Builder: Open Diagnostics Panel",
+                "icon": "$(beaker)"
+            },
+            {
+                "command": "watsonx.setExportRoot",
+                "title": "Set Export Root Folder"
+            },
+            {
+                "command": "watsonx.openSyncPanel",
+                "title": "Export / Import / Sync",
+                "icon": "$(sync)"
+            },
+            {
+                "command": "watsonx.openDocumentation",
+                "title": "Documentation / Help",
+                "icon": "$(book)"
+            },
+            {
+                "command": "watsonx.openChangelog",
+                "title": "Changelog",
+                "icon": "$(history)"
+            },
+            {
+                "command": "watsonx.createPlugin",
+                "title": "Create Plugin",
+                "icon": "$(plus)"
+            },
+            {
+                "command": "watsonx.searchPlugins",
+                "title": "Search Plugins",
+                "icon": "$(search)"
+            },
+            {
+                "command": "watsonx.searchToolkits",
+                "title": "Search Toolkits",
+                "icon": "$(search)"
+            },
+            {
+                "command": "watsonx.refreshAgents",
+                "title": "Refresh Agents",
+                "icon": "$(refresh)"
+            },
+            {
+                "command": "watsonx.refreshToolkits",
+                "title": "Refresh Toolkits",
+                "icon": "$(refresh)"
+            },
+            {
+                "command": "watsonx.refreshKnowledgeBases",
+                "title": "Refresh Knowledge Bases",
+                "icon": "$(refresh)"
+            },
+            {
+                "command": "watsonx.searchKnowledgeBases",
+                "title": "Search Knowledge Bases",
+                "icon": "$(search)"
+            },
+            {
+                "command": "watsonx.createKnowledgeBase",
+                "title": "Create Knowledge Base",
+                "icon": "$(plus)"
+            },
+            {
+                "command": "watsonx.editKnowledgeBase",
+                "title": "Edit Knowledge Base",
+                "icon": "$(edit)"
+            },
+            {
+                "command": "watsonx.refreshEvaluations",
+                "title": "Refresh Evaluations",
+                "icon": "$(refresh)"
+            },
+            {
+                "command": "watsonx.searchEvaluations",
+                "title": "Search Evaluations",
+                "icon": "$(search)"
+            },
+            {
+                "command": "watsonx.inspectAgentRun",
+                "title": "Inspect Agent Run",
+                "icon": "$(play-circle)"
+            },
+            {
+                "command": "watsonx.viewEvaluationDetails",
+                "title": "Open Evaluation Details",
+                "icon": "$(preview)"
+            },
+            {
+                "command": "watsonx.viewEvaluationTestCase",
+                "title": "Open Test Case",
+                "icon": "$(preview)"
+            },
+            {
+                "command": "watsonx.viewEvaluationTool",
+                "title": "Open Attached Tool",
+                "icon": "$(preview)"
+            },
+            {
+                "command": "watsonx.openEvaluationTrace",
+                "title": "Open Trace",
+                "icon": "$(pulse)"
+            },
+            {
+                "command": "watsonx.deleteKnowledgeBase",
+                "title": "Delete Knowledge Base",
+                "icon": "$(trash)"
+            },
+            {
+                "command": "watsonx.exportKnowledgeBase",
+                "title": "Export Knowledge Base",
+                "icon": "$(export)"
+            },
+            {
+                "command": "watsonx.deleteEvaluation",
+                "title": "Delete Evaluation",
+                "icon": "$(trash)"
+            },
+            {
+                "command": "watsonx.exportEvaluation",
+                "title": "Export Evaluation",
+                "icon": "$(export)"
+            },
+            {
+                "command": "watsonx.exportToolkit",
+                "title": "Export Toolkit",
+                "icon": "$(export)"
+            },
+            {
+                "command": "watsonx.importToolkit",
+                "title": "Import Toolkit",
+                "icon": "$(file-add)"
+            },
+            {
+                "command": "watsonx.createToolkit",
+                "title": "Create Toolkit",
+                "icon": "$(plus)"
+            },
+            {
+                "command": "watsonx.editToolkit",
+                "title": "View/Edit Toolkit",
+                "icon": "$(edit)"
+            },
+            {
+                "command": "watsonx.deleteToolkit",
+                "title": "Delete Toolkit",
+                "icon": "$(trash)"
+            },
+            {
+                "command": "watsonx.openDirFile",
+                "title": "Open File",
+                "icon": "$(go-to-file)"
+            },
+            {
+                "command": "watsonx.newDirFile",
+                "title": "New File",
+                "icon": "$(new-file)"
+            },
+            {
+                "command": "watsonx.newDirFolder",
+                "title": "New Folder",
+                "icon": "$(new-folder)"
+            },
+            {
+                "command": "watsonx.renameDirItem",
+                "title": "Rename",
+                "icon": "$(edit)"
+            },
+            {
+                "command": "watsonx.deleteDirItem",
+                "title": "Delete",
+                "icon": "$(trash)"
+            },
+            {
+                "command": "watsonx.revealDirInExplorer",
+                "title": "Reveal in Explorer",
+                "icon": "$(folder-opened)"
+            },
+            {
+                "command": "watsonx.openDirInTerminal",
+                "title": "Open in Terminal",
+                "icon": "$(terminal)"
+            },
+            {
+                "command": "watsonx.copyDirFilePath",
+                "title": "Copy Path",
+                "icon": "$(copy)"
+            },
+            {
+                "command": "watsonx.refreshProjectDir",
+                "title": "Refresh",
+                "icon": "$(refresh)"
+            }
+        ],
+        "menus": {
+            "view/title": [
+                {
+                    "command": "watsonx.selectSystem",
+                    "when": "view == watsonx-skills",
+                    "group": "navigation"
+                },
+                {
+                    "command": "watsonx.refreshSkills",
+                    "when": "view == watsonx-skills",
+                    "group": "navigation"
+                },
+                {
+                    "command": "watsonx.searchTools",
+                    "when": "view == watsonx-skills",
+                    "group": "navigation"
+                },
+                {
+                    "command": "watsonx.createTool",
+                    "when": "view == watsonx-skills",
+                    "group": "navigation"
+                },
+                {
+                    "command": "watsonx.importTool",
+                    "when": "view == watsonx-skills",
+                    "group": "navigation"
+                },
+                {
+                    "command": "watsonx.exportTool",
+                    "when": "view == watsonx-skills",
+                    "group": "navigation"
+                },
+                {
+                    "command": "watsonx.selectSystem",
+                    "when": "view == watsonx-agents",
+                    "group": "navigation"
+                },
+                {
+                    "command": "watsonx.refreshAgents",
+                    "when": "view == watsonx-agents",
+                    "group": "navigation"
+                },
+                {
+                    "command": "watsonx.searchAgents",
+                    "when": "view == watsonx-agents",
+                    "group": "navigation"
+                },
+                {
+                    "command": "watsonx.selectSystem",
+                    "when": "view == watsonx-connections",
+                    "group": "navigation"
+                },
+                {
+                    "command": "watsonx.refreshConnections",
+                    "when": "view == watsonx-connections",
+                    "group": "navigation"
+                },
+                {
+                    "command": "watsonx.searchConnections",
+                    "when": "view == watsonx-connections",
+                    "group": "navigation"
+                },
+                {
+                    "command": "watsonx.createConnection",
+                    "when": "view == watsonx-connections",
+                    "group": "navigation"
+                },
+                {
+                    "command": "watsonx.importConnection",
+                    "when": "view == watsonx-connections",
+                    "group": "navigation"
+                },
+                {
+                    "command": "watsonx.exportConnection",
+                    "when": "view == watsonx-connections",
+                    "group": "navigation"
+                },
+                {
+                    "command": "watsonx.openSyncPanel",
+                    "when": "view == watsonx-skills",
+                    "group": "navigation"
+                },
+                {
+                    "command": "watsonx.openDocumentation",
+                    "when": "view == watsonx-skills",
+                    "group": "secondary"
+                },
+                {
+                    "command": "watsonx.openChangelog",
+                    "when": "view == watsonx-skills",
+                    "group": "secondary"
+                },
+                {
+                    "command": "watsonx.openSyncPanel",
+                    "when": "view == watsonx-agents",
+                    "group": "navigation"
+                },
+                {
+                    "command": "watsonx.openDocumentation",
+                    "when": "view == watsonx-agents",
+                    "group": "secondary"
+                },
+                {
+                    "command": "watsonx.openChangelog",
+                    "when": "view == watsonx-agents",
+                    "group": "secondary"
+                },
+                {
+                    "command": "watsonx.selectSystem",
+                    "when": "view == watsonx-plugins",
+                    "group": "navigation"
+                },
+                {
+                    "command": "watsonx.refreshSkills",
+                    "when": "view == watsonx-plugins",
+                    "group": "navigation"
+                },
+                {
+                    "command": "watsonx.searchPlugins",
+                    "when": "view == watsonx-plugins",
+                    "group": "navigation"
+                },
+                {
+                    "command": "watsonx.createPlugin",
+                    "when": "view == watsonx-plugins",
+                    "group": "navigation"
+                },
+                {
+                    "command": "watsonx.selectSystem",
+                    "when": "view == watsonx-toolkits",
+                    "group": "navigation"
+                },
+                {
+                    "command": "watsonx.refreshToolkits",
+                    "when": "view == watsonx-toolkits",
+                    "group": "navigation"
+                },
+                {
+                    "command": "watsonx.searchToolkits",
+                    "when": "view == watsonx-toolkits",
+                    "group": "navigation"
+                },
+                {
+                    "command": "watsonx.createToolkit",
+                    "when": "view == watsonx-toolkits",
+                    "group": "navigation"
+                },
+                {
+                    "command": "watsonx.importToolkit",
+                    "when": "view == watsonx-toolkits",
+                    "group": "navigation"
+                },
+                {
+                    "command": "watsonx.openSyncPanel",
+                    "when": "view == watsonx-toolkits",
+                    "group": "navigation"
+                },
+                {
+                    "command": "watsonx.openExtension",
+                    "title": "Extension",
+                    "group": "navigation",
+                    "when": "view == watsonx-toolkits"
+                },
+                {
+                    "command": "watsonx.openDocumentation",
+                    "when": "view == watsonx-toolkits",
+                    "group": "secondary"
+                },
+                {
+                    "command": "watsonx.openChangelog",
+                    "when": "view == watsonx-toolkits",
+                    "group": "secondary"
+                },
+                {
+                    "command": "watsonx.selectSystem",
+                    "when": "view == watsonx-knowledge-bases",
+                    "group": "navigation"
+                },
+                {
+                    "command": "watsonx.refreshKnowledgeBases",
+                    "when": "view == watsonx-knowledge-bases",
+                    "group": "navigation"
+                },
+                {
+                    "command": "watsonx.searchKnowledgeBases",
+                    "when": "view == watsonx-knowledge-bases",
+                    "group": "navigation"
+                },
+                {
+                    "command": "watsonx.createKnowledgeBase",
+                    "when": "view == watsonx-knowledge-bases",
+                    "group": "navigation"
+                },
+                {
+                    "command": "watsonx.exportKnowledgeBase",
+                    "when": "view == watsonx-knowledge-bases",
+                    "group": "navigation"
+                },
+                {
+                    "command": "watsonx.openSyncPanel",
+                    "when": "view == watsonx-knowledge-bases",
+                    "group": "navigation"
+                },
+                {
+                    "command": "watsonx.openDocumentation",
+                    "when": "view == watsonx-knowledge-bases",
+                    "group": "secondary"
+                },
+                {
+                    "command": "watsonx.openChangelog",
+                    "when": "view == watsonx-knowledge-bases",
+                    "group": "secondary"
+                },
+                {
+                    "command": "watsonx.selectSystem",
+                    "when": "view == watsonx-evaluations",
+                    "group": "navigation"
+                },
+                {
+                    "command": "watsonx.refreshEvaluations",
+                    "when": "view == watsonx-evaluations",
+                    "group": "navigation"
+                },
+                {
+                    "command": "watsonx.searchEvaluations",
+                    "when": "view == watsonx-evaluations",
+                    "group": "navigation"
+                },
+                {
+                    "command": "watsonx.openSyncPanel",
+                    "when": "view == watsonx-evaluations",
+                    "group": "navigation"
+                },
+                {
+                    "command": "watsonx.openDocumentation",
+                    "when": "view == watsonx-evaluations",
+                    "group": "secondary"
+                },
+                {
+                    "command": "watsonx.openChangelog",
+                    "when": "view == watsonx-evaluations",
+                    "group": "secondary"
+                },
+                {
+                    "command": "watsonx.selectSystem",
+                    "when": "view == watsonx-flows",
+                    "group": "navigation"
+                },
+                {
+                    "command": "watsonx.openSyncPanel",
+                    "when": "view == watsonx-flows",
+                    "group": "navigation"
+                },
+                {
+                    "command": "watsonx.openDocumentation",
+                    "when": "view == watsonx-flows",
+                    "group": "secondary"
+                },
+                {
+                    "command": "watsonx.refreshSkills",
+                    "when": "view == watsonx-flows",
+                    "group": "navigation"
+                },
+                {
+                    "command": "watsonx.searchFlows",
+                    "when": "view == watsonx-flows",
+                    "group": "navigation"
+                },
+                {
+                    "command": "watsonx.importLangflowFlow",
+                    "when": "view == watsonx-flows",
+                    "group": "navigation"
+                },
+                {
+                    "command": "watsonx.createFlow",
+                    "when": "view == watsonx-flows",
+                    "group": "navigation"
+                },
+                {
+                    "command": "watsonx.importFlow",
+                    "when": "view == watsonx-flows",
+                    "group": "navigation"
+                },
+                {
+                    "command": "watsonx.exportFlow",
+                    "when": "view == watsonx-flows",
+                    "group": "navigation"
+                },
+                {
+                    "command": "watsonx.openChangelog",
+                    "when": "view == watsonx-flows",
+                    "group": "secondary"
+                },
+                {
+                    "command": "watsonx.createAgent",
+                    "when": "view == watsonx-agents",
+                    "group": "navigation"
+                },
+                {
+                    "command": "watsonx.importAgent",
+                    "when": "view == watsonx-agents",
+                    "group": "navigation"
+                },
+                {
+                    "command": "watsonx.exportAgent",
+                    "when": "view == watsonx-agents",
+                    "group": "navigation"
+                },
+                {
+                    "command": "watsonx.openExtension",
+                    "title": "Extension",
+                    "group": "navigation",
+                    "when": "view == watsonx-skills"
+                },
+                {
+                    "command": "watsonx.openExtension",
+                    "title": "Extension",
+                    "group": "navigation",
+                    "when": "view == watsonx-agents"
+                },
+                {
+                    "command": "watsonx.openSyncPanel",
+                    "when": "view == watsonx-connections",
+                    "group": "navigation"
+                },
+                {
+                    "command": "watsonx.openExtension",
+                    "title": "Extension",
+                    "group": "navigation",
+                    "when": "view == watsonx-connections"
+                },
+                {
+                    "command": "watsonx.openDocumentation",
+                    "when": "view == watsonx-connections",
+                    "group": "secondary"
+                },
+                {
+                    "command": "watsonx.openChangelog",
+                    "when": "view == watsonx-connections",
+                    "group": "secondary"
+                },
+                {
+                    "command": "watsonx.openExtension",
+                    "title": "Extension",
+                    "group": "navigation",
+                    "when": "view == watsonx-flows"
+                },
+                {
+                    "command": "watsonx.configure",
+                    "title": "Configure WxO Builder",
+                    "group": "navigation",
+                    "when": "view == watsonx-diagnostics"
+                },
+                {
+                    "command": "watsonx.openSyncPanel",
+                    "when": "view == watsonx-plugins",
+                    "group": "navigation"
+                },
+                {
+                    "command": "watsonx.openExtension",
+                    "title": "Extension",
+                    "group": "navigation",
+                    "when": "view == watsonx-plugins"
+                },
+                {
+                    "command": "watsonx.openDocumentation",
+                    "when": "view == watsonx-plugins",
+                    "group": "secondary"
+                },
+                {
+                    "command": "watsonx.openChangelog",
+                    "when": "view == watsonx-plugins",
+                    "group": "secondary"
+                },
+                {
+                    "command": "watsonx.openSyncPanel",
+                    "when": "view == watsonx-diagnostics",
+                    "group": "navigation"
+                },
+                {
+                    "command": "watsonx.openExtension",
+                    "title": "Extension",
+                    "group": "navigation",
+                    "when": "view == watsonx-diagnostics"
+                },
+                {
+                    "command": "watsonx.openDocumentation",
+                    "when": "view == watsonx-diagnostics",
+                    "group": "secondary"
+                },
+                {
+                    "command": "watsonx.openChangelog",
+                    "when": "view == watsonx-diagnostics",
+                    "group": "secondary"
+                },
+                {
+                    "command": "watsonx.refreshProjectDir",
+                    "when": "view == watsonx-project-dir",
+                    "group": "navigation"
+                },
+                {
+                    "command": "watsonx.newDirFile",
+                    "when": "view == watsonx-project-dir",
+                    "group": "navigation"
+                },
+                {
+                    "command": "watsonx.newDirFolder",
+                    "when": "view == watsonx-project-dir",
+                    "group": "navigation"
+                },
+                {
+                    "command": "watsonx.openDocumentation",
+                    "when": "view == watsonx-project-dir",
+                    "group": "secondary"
+                },
+                {
+                    "command": "watsonx.openChangelog",
+                    "when": "view == watsonx-project-dir",
+                    "group": "secondary"
+                }
+            ],
+            "view/item/context": [
+                {
+                    "command": "watsonx.editSkill",
+                    "when": "view == watsonx-skills && viewItem =~ /skill/",
+                    "group": "inline"
+                },
+                {
+                    "command": "watsonx.editPlugin",
+                    "when": "view == watsonx-plugins && viewItem =~ /skill/",
+                    "group": "inline"
+                },
+                {
+                    "command": "watsonx.editToolkit",
+                    "when": "view == watsonx-toolkits && viewItem == toolkit",
+                    "group": "inline"
+                },
+                {
+                    "command": "watsonx.exportToolkit",
+                    "when": "view == watsonx-toolkits && viewItem == toolkit",
+                    "group": "inline"
+                },
+                {
+                    "command": "watsonx.deleteToolkit",
+                    "when": "view == watsonx-toolkits && viewItem == toolkit",
+                    "group": "inline"
+                },
+                {
+                    "command": "watsonx.editKnowledgeBase",
+                    "when": "view == watsonx-knowledge-bases && viewItem == knowledgeBase",
+                    "group": "inline"
+                },
+                {
+                    "command": "watsonx.deleteKnowledgeBase",
+                    "when": "view == watsonx-knowledge-bases && viewItem == knowledgeBase",
+                    "group": "inline"
+                },
+                {
+                    "command": "watsonx.exportKnowledgeBase",
+                    "when": "view == watsonx-knowledge-bases && viewItem == knowledgeBase",
+                    "group": "inline"
+                },
+                {
+                    "command": "watsonx.inspectAgentRun",
+                    "when": "view == watsonx-evaluations && viewItem == agentEvaluations",
+                    "group": "inline"
+                },
+                {
+                    "command": "watsonx.viewEvaluationDetails",
+                    "when": "view == watsonx-evaluations && viewItem == evaluationRun",
+                    "group": "inline"
+                },
+                {
+                    "command": "watsonx.viewEvaluationTestCase",
+                    "when": "view == watsonx-evaluations && viewItem == evaluationTestCase",
+                    "group": "inline"
+                },
+                {
+                    "command": "watsonx.viewEvaluationTool",
+                    "when": "view == watsonx-evaluations && viewItem == evaluationAttachedTool",
+                    "group": "inline"
+                },
+                {
+                    "command": "watsonx.openEvaluationTrace",
+                    "when": "view == watsonx-evaluations && viewItem == evaluationTrace",
+                    "group": "inline"
+                },
+                {
+                    "command": "watsonx.deleteEvaluation",
+                    "when": "view == watsonx-evaluations && viewItem == evaluationRun",
+                    "group": "inline"
+                },
+                {
+                    "command": "watsonx.exportEvaluation",
+                    "when": "view == watsonx-evaluations && viewItem == evaluationRun",
+                    "group": "inline"
+                },
+                {
+                    "command": "watsonx.editPlugin",
+                    "when": "view == watsonx-toolkits && viewItem =~ /toolkitTool/",
+                    "group": "inline"
+                },
+                {
+                    "command": "watsonx.copySkill",
+                    "when": "view == watsonx-skills && viewItem =~ /skill/",
+                    "group": "inline"
+                },
+                {
+                    "command": "watsonx.copySkill",
+                    "when": "view == watsonx-plugins && viewItem =~ /skill/",
+                    "group": "inline"
+                },
+                {
+                    "command": "watsonx.deleteSkill",
+                    "when": "view == watsonx-skills && viewItem =~ /skill/",
+                    "group": "inline"
+                },
+                {
+                    "command": "watsonx.deleteSkill",
+                    "when": "view == watsonx-plugins && viewItem =~ /skill/",
+                    "group": "inline"
+                },
+                {
+                    "command": "watsonx.exportTool",
+                    "when": "view == watsonx-skills && viewItem =~ /skill/",
+                    "group": "inline"
+                },
+                {
+                    "command": "watsonx.exportTool",
+                    "when": "view == watsonx-plugins && viewItem =~ /skill/",
+                    "group": "inline"
+                },
+                {
+                    "command": "watsonx.testTool",
+                    "when": "view == watsonx-skills && viewItem =~ /skill/",
+                    "group": "navigation"
+                },
+                {
+                    "command": "watsonx.openToolConnection",
+                    "when": "view == watsonx-skills && viewItem == skillWithConnection",
+                    "group": "inline"
+                },
+                {
+                    "command": "watsonx.fixToolForCli",
+                    "when": "view == watsonx-skills && viewItem =~ /skillPython/",
+                    "group": "inline"
+                },
+                {
+                    "command": "watsonx.fixToolForCli",
+                    "when": "view == watsonx-plugins && viewItem =~ /skillPlugin/",
+                    "group": "inline"
+                },
+                {
+                    "command": "watsonx.reuploadOpenApiArtifact",
+                    "when": "view == watsonx-skills && viewItem =~ /skill/",
+                    "group": "inline"
+                },
+                {
+                    "command": "watsonx.viewSkillInfo",
+                    "when": "view == watsonx-skills && viewItem =~ /skill/",
+                    "group": "navigation"
+                },
+                {
+                    "command": "watsonx.compare",
+                    "when": "view == watsonx-skills && viewItem =~ /skill/",
+                    "group": "navigation"
+                },
+                {
+                    "command": "watsonx.viewSkillInfo",
+                    "when": "view == watsonx-plugins && viewItem =~ /skill/",
+                    "group": "navigation"
+                },
+                {
+                    "command": "watsonx.compare",
+                    "when": "view == watsonx-plugins && viewItem =~ /skill/",
+                    "group": "navigation"
+                },
+                {
+                    "command": "watsonx.activateSkill",
+                    "when": "view == watsonx-skills && viewItem =~ /skill/",
+                    "group": "2_actions"
+                },
+                {
+                    "command": "watsonx.deactivateSkill",
+                    "when": "view == watsonx-skills && viewItem =~ /skill/",
+                    "group": "2_actions"
+                },
+                {
+                    "command": "watsonx.activateSkill",
+                    "when": "view == watsonx-plugins && viewItem =~ /skill/",
+                    "group": "2_actions"
+                },
+                {
+                    "command": "watsonx.deactivateSkill",
+                    "when": "view == watsonx-plugins && viewItem =~ /skill/",
+                    "group": "2_actions"
+                },
+                {
+                    "command": "watsonx.editAgent",
+                    "when": "view == watsonx-agents",
+                    "group": "inline"
+                },
+                {
+                    "command": "watsonx.copyAgent",
+                    "when": "view == watsonx-agents && viewItem == agent",
+                    "group": "inline"
+                },
+                {
+                    "command": "watsonx.deleteAgent",
+                    "when": "view == watsonx-agents",
+                    "group": "inline"
+                },
+                {
+                    "command": "watsonx.exportAgent",
+                    "when": "view == watsonx-agents && viewItem == agent",
+                    "group": "inline"
+                },
+                {
+                    "command": "watsonx.compare",
+                    "when": "view == watsonx-agents && viewItem == agent",
+                    "group": "navigation"
+                },
+                {
+                    "command": "watsonx.editFlow",
+                    "when": "view == watsonx-flows && viewItem == flow",
+                    "group": "inline"
+                },
+                {
+                    "command": "watsonx.deleteFlow",
+                    "when": "view == watsonx-flows && viewItem == flow",
+                    "group": "inline"
+                },
+                {
+                    "command": "watsonx.exportFlow",
+                    "when": "view == watsonx-flows && viewItem == flow",
+                    "group": "inline"
+                },
+                {
+                    "command": "watsonx.compare",
+                    "when": "view == watsonx-flows && viewItem == flow",
+                    "group": "navigation"
+                },
+                {
+                    "command": "watsonx.deleteSkill",
+                    "when": "view == watsonx-skills && viewItem =~ /skill/",
+                    "group": "1_modification"
+                },
+                {
+                    "command": "watsonx.deleteSkill",
+                    "when": "view == watsonx-plugins && viewItem =~ /skill/",
+                    "group": "1_modification"
+                },
+                {
+                    "command": "watsonx.deleteAgent",
+                    "when": "view == watsonx-agents",
+                    "group": "1_modification"
+                },
+                {
+                    "command": "watsonx.exportAgentAsMcpServer",
+                    "when": "view == watsonx-agents && viewItem == agent",
+                    "group": "1_modification"
+                },
+                {
+                    "command": "watsonx.deleteFlow",
+                    "when": "view == watsonx-flows && viewItem == flow",
+                    "group": "1_modification"
+                },
+                {
+                    "command": "watsonx.deleteConnection",
+                    "when": "view == watsonx-connections && viewItem =~ /connection/",
+                    "group": "inline"
+                },
+                {
+                    "command": "watsonx.exportConnection",
+                    "when": "view == watsonx-connections && viewItem =~ /connection/",
+                    "group": "inline"
+                },
+                {
+                    "command": "watsonx.compare",
+                    "when": "view == watsonx-connections && viewItem =~ /connection/",
+                    "group": "navigation"
+                },
+                {
+                    "command": "watsonx.viewConnectionDetails",
+                    "when": "view == watsonx-connections && viewItem =~ /connection/",
+                    "group": "navigation"
+                },
+                {
+                    "command": "watsonx.addConnection",
+                    "when": "view == watsonx-connections && viewItem == connector",
+                    "group": "inline"
+                },
+                {
+                    "command": "watsonx.newDirFile",
+                    "when": "view == watsonx-project-dir && viewItem =~ /^wxo-dir-(root|folder)$/",
+                    "group": "inline@1"
+                },
+                {
+                    "command": "watsonx.newDirFolder",
+                    "when": "view == watsonx-project-dir && viewItem =~ /^wxo-dir-(root|folder)$/",
+                    "group": "inline@2"
+                },
+                {
+                    "command": "watsonx.revealDirInExplorer",
+                    "when": "view == watsonx-project-dir && viewItem =~ /^wxo-dir-(root|folder)$/",
+                    "group": "inline@3"
+                },
+                {
+                    "command": "watsonx.openDirInTerminal",
+                    "when": "view == watsonx-project-dir && viewItem =~ /^wxo-dir-(root|folder)$/",
+                    "group": "navigation"
+                },
+                {
+                    "command": "watsonx.renameDirItem",
+                    "when": "view == watsonx-project-dir && viewItem == wxo-dir-folder",
+                    "group": "1_modification"
+                },
+                {
+                    "command": "watsonx.deleteDirItem",
+                    "when": "view == watsonx-project-dir && viewItem == wxo-dir-folder",
+                    "group": "1_modification"
+                },
+                {
+                    "command": "watsonx.copyDirFilePath",
+                    "when": "view == watsonx-project-dir && viewItem == wxo-dir-folder",
+                    "group": "2_actions"
+                },
+                {
+                    "command": "watsonx.openDirFile",
+                    "when": "view == watsonx-project-dir && viewItem == wxo-dir-env-file",
+                    "group": "inline"
+                },
+                {
+                    "command": "watsonx.renameDirItem",
+                    "when": "view == watsonx-project-dir && viewItem == wxo-dir-env-file",
+                    "group": "1_modification"
+                },
+                {
+                    "command": "watsonx.deleteDirItem",
+                    "when": "view == watsonx-project-dir && viewItem == wxo-dir-env-file",
+                    "group": "1_modification"
+                },
+                {
+                    "command": "watsonx.revealDirInExplorer",
+                    "when": "view == watsonx-project-dir && viewItem == wxo-dir-env-file",
+                    "group": "2_actions"
+                },
+                {
+                    "command": "watsonx.copyDirFilePath",
+                    "when": "view == watsonx-project-dir && viewItem == wxo-dir-env-file",
+                    "group": "2_actions"
+                },
+                {
+                    "command": "watsonx.openDirFile",
+                    "when": "view == watsonx-project-dir && viewItem =~ /^wxo-dir-(yaml|json|py|sh|)-?file$/",
+                    "group": "inline"
+                },
+                {
+                    "command": "watsonx.renameDirItem",
+                    "when": "view == watsonx-project-dir && viewItem =~ /^wxo-dir-(yaml|json|py|sh|)-?file$/",
+                    "group": "1_modification"
+                },
+                {
+                    "command": "watsonx.deleteDirItem",
+                    "when": "view == watsonx-project-dir && viewItem =~ /^wxo-dir-(yaml|json|py|sh|)-?file$/",
+                    "group": "1_modification"
+                },
+                {
+                    "command": "watsonx.revealDirInExplorer",
+                    "when": "view == watsonx-project-dir && viewItem =~ /^wxo-dir-(yaml|json|py|sh|)-?file$/",
+                    "group": "2_actions"
+                },
+                {
+                    "command": "watsonx.copyDirFilePath",
+                    "when": "view == watsonx-project-dir && viewItem =~ /^wxo-dir-(yaml|json|py|sh|)-?file$/",
+                    "group": "2_actions"
+                }
+            ]
+        },
+        "keybindings": [
+            {
+                "key": "delete",
+                "command": "watsonx.deleteSkill",
+                "when": "focusedView == watsonx-skills"
+            },
+            {
+                "key": "delete",
+                "command": "watsonx.deleteSkill",
+                "when": "focusedView == watsonx-plugins"
+            },
+            {
+                "key": "delete",
+                "command": "watsonx.deleteAgent",
+                "when": "focusedView == watsonx-agents"
+            },
+            {
+                "key": "delete",
+                "command": "watsonx.deleteFlow",
+                "when": "focusedView == watsonx-flows"
+            },
+            {
+                "key": "delete",
+                "command": "watsonx.deleteConnection",
+                "when": "focusedView == watsonx-connections"
+            }
+        ],
+        "configuration": {
+            "title": "WxO Builder",
+            "properties": {
+                "wxo-builder.apiKey": {
+                    "type": "string",
+                    "markdownDescription": "The default API key for Watson Orchestrate in this workspace. Corresponds to `WO_API_KEY`. Use the WxO Builder Systems panel/tab when you want to manage multiple named systems or switch environments without editing settings directly."
+                },
+                "wxo-builder.trialApiKey": {
+                    "type": "string",
+                    "markdownDescription": "Default long service credential (`username:password`) for trial instances in this workspace. Corresponds to `WO_TRIAL_API_KEY`. Used if standard apiKey is missing or fails. Use the WxO Builder Systems panel/tab for saved trial systems and environment switching."
+                },
+                "wxo-builder.mcspTokenUrl": {
+                    "type": "string",
+                    "default": "https://iam.platform.saas.ibm.com/siusermgr/api/1.0/apikeys/token",
+                    "markdownDescription": "MCSP IAM token endpoint for trial instances (e.g. `api.dl.watson-orchestrate.ibm.com`). Only change this if your trial instance uses a different IAM region. Corresponds to `WO_MCSP_TOKEN_URL`."
+                },
+                "wxo-builder.instanceUrl": {
+                    "type": "string",
+                    "markdownDescription": "The default Watson Orchestrate instance URL for this workspace. Corresponds to `WO_INSTANCE_URL`. Use the WxO Builder Systems panel/tab to maintain multiple instance definitions and choose between them from the extension UI."
+                },
+                "wxo-builder.debug": {
+                    "type": "boolean",
+                    "default": true,
+                    "markdownDescription": "Enable debug logging to the Extension Host console. Filter by `[WxO Editor]` or `[WxO]`."
+                },
+                "wxo-builder.agentId": {
+                    "type": "string",
+                    "markdownDescription": "Optional agent ID for remote tool runs. The default Orchestrate Assistant may not have your tool — it can hallucinate instead of executing. Create an agent in WxO with this tool attached and set its ID here for real tool execution."
+                },
+                "wxo-builder.scope": {
+                    "type": "string",
+                    "enum": [
+                        "draft",
+                        "live"
+                    ],
+                    "default": "draft",
+                    "markdownDescription": "Environment scope: draft (development) or live (production). Tools and connections are created/edited in this scope."
+                },
+                "wxo-builder.toolsShowInAdk": {
+                    "type": "boolean",
+                    "default": true,
+                    "markdownDescription": "When true (default), newly created tools use ADK-compatible schema (connections: {}, output_schema) so they appear in `orchestrate tools list -v`. Set to false if you prefer tools that may not show in the CLI."
+                },
+                "wxo-builder.syncInstances": {
+                    "type": "array",
+                    "items": {
+                        "type": "object",
+                        "properties": {
+                            "alias": {
+                                "type": "string",
+                                "description": "Display name"
+                            },
+                            "instanceUrl": {
+                                "type": "string",
+                                "description": "Watson Orchestrate instance URL"
+                            },
+                            "apiKey": {
+                                "type": "string",
+                                "description": "IBM Cloud API key (optional)"
+                            }
+                        },
+                        "required": [
+                            "alias",
+                            "instanceUrl"
+                        ]
+                    },
+                    "default": [],
+                    "markdownDescription": "(Legacy) Instance configs used when `syncSources`/`syncTargets` are empty. Prefer using `syncSources` and `syncTargets`."
+                },
+                "wxo-builder.syncSources": {
+                    "type": "array",
+                    "items": {
+                        "type": "object",
+                        "properties": {
+                            "alias": {
+                                "type": "string",
+                                "description": "Display name (e.g. Production, Test, Dev)"
+                            },
+                            "instanceUrl": {
+                                "type": "string",
+                                "description": "Watson Orchestrate instance URL"
+                            },
+                            "apiKey": {
+                                "type": "string",
+                                "description": "IBM Cloud API key (optional; uses main apiKey if omitted)"
+                            }
+                        },
+                        "required": [
+                            "alias",
+                            "instanceUrl"
+                        ]
+                    },
+                    "default": [],
+                    "markdownDescription": "Source instances for the Sync panel and Select System actions. If you prefer managing named environments from inside the extension, use the WxO Builder Systems panel/tab; these settings provide the same data as workspace configuration. Add to settings.json (use your instance URLs):\n\n```json\n\"wxo-builder.syncSources\": [\n  { \"alias\": \"Production\", \"instanceUrl\": \"https://api.us-south.watson-orchestrate.cloud.ibm.com/instances/xxx\", \"apiKey\": \"\" },\n  { \"alias\": \"Test\", \"instanceUrl\": \"https://api.us-south.watson-orchestrate.cloud.ibm.com/instances/yyy\" }\n]\n```\n\n`apiKey` is optional when same as `wxo-builder.apiKey`."
+                },
+                "wxo-builder.syncTargets": {
+                    "type": "array",
+                    "items": {
+                        "type": "object",
+                        "properties": {
+                            "alias": {
+                                "type": "string",
+                                "description": "Display name (e.g. ProductionCopy, TestCopy, DevCopy)"
+                            },
+                            "instanceUrl": {
+                                "type": "string",
+                                "description": "Watson Orchestrate instance URL"
+                            },
+                            "apiKey": {
+                                "type": "string",
+                                "description": "IBM Cloud API key (optional)"
+                            }
+                        },
+                        "required": [
+                            "alias",
+                            "instanceUrl"
+                        ]
+                    },
+                    "default": [],
+                    "markdownDescription": "Target instances for the Sync panel. If you manage environments from the WxO Builder Systems panel/tab, keep those system definitions aligned with these target aliases. Add to settings.json (use your instance URLs):\n\n```json\n\"wxo-builder.syncTargets\": [\n  { \"alias\": \"ProductionCopy\", \"instanceUrl\": \"https://api.us-south.watson-orchestrate.cloud.ibm.com/instances/xxx\", \"apiKey\": \"\" },\n  { \"alias\": \"TestCopy\", \"instanceUrl\": \"https://api.eu-de.watson-orchestrate.cloud.ibm.com/instances/yyy\" }\n]\n```\n\n`apiKey` is optional."
+                },
+                "wxo-builder.defaultSyncSource": {
+                    "type": "string",
+                    "default": "",
+                    "markdownDescription": "Default Source alias for the Sync panel. Must match an alias in `syncSources` (or `syncInstances`), or leave empty for 'Current workspace'."
+                },
+                "wxo-builder.defaultSyncTarget": {
+                    "type": "string",
+                    "default": "",
+                    "markdownDescription": "Default Target alias for the Sync panel. Must match an alias in `syncTargets` (or `syncInstances`), or leave empty for 'Current workspace'."
+                },
+                "wxo-builder.exportRoot": {
+                    "type": "string",
+                    "default": "",
+                    "markdownDescription": "Root folder for WxO Exports and Imports. Default: `{workspaceRoot}/WxO`. When set, Agent/Sync export dialogs open in this folder. Use an absolute path or a path relative to the workspace (e.g. `./my-exports`). Tip: Open Settings (Ctrl+,) and search for 'exportRoot' to change."
+                }
+            }
+        }
+    },
+    "scripts": {
+        "vscode:prepublish": "node scripts/generate-icon.mjs && tsc --noEmit -p . && node esbuild.js",
+        "compile:bundle": "node esbuild.js",
+        "compile:bundle:prod": "node esbuild.js --production",
+        "compile": "tsc --noEmit -p . && node esbuild.js",
+        "watch": "tsc -watch -p ./",
+        "package": "vsce package",
+        "generate-icon": "node scripts/generate-icon.mjs",
+        "pretest": "npm run compile && npm run lint",
+        "lint": "eslint src --ext ts",
+        "lint:fix": "eslint src --ext ts --fix",
+        "format": "prettier --write \"src/**/*.ts\" \"*.json\" \"*.md\"",
+        "format:check": "prettier --check \"src/**/*.ts\" \"*.json\" \"*.md\"",
+        "check": "npm run lint && npm run format:check && npm run compile",
+        "fix": "npm run lint:fix && npm run format",
+        "test": "node ./out/test/runTest.js",
+        "prepare": "husky",
+        "compile:scripts": "tsc -p tsconfig.scripts.json",
+        "compile:tests": "tsc -p tsconfig.tests.json",
+        "test:remote": "npm run compile:scripts && node out/scripts/test-remote-tool.js",
+        "traces": "npm run compile:scripts && node out/scripts/get-traces.js",
+        "test:python-tool": "npm run compile:tests && node out/tests/scripts/create-and-run-python-tool.js",
+        "test:agentic-workflow": "npm run compile:tests && node out/tests/scripts/create-agentic-workflow.js",
+        "test:agentic-workflow-explicit": "npm run compile:tests && WO_EXPLICIT_FLOW=1 node out/tests/scripts/create-agentic-workflow.js",
+        "test:flow-data-mapping": "npm run compile:tests && node out/tests/scripts/test-flow-data-mapping.js",
+        "test:import-langflow": "npm run compile:tests && LANGFLOW_UNIQUE_NAME=1 node out/tests/scripts/import-langflow-flow.js",
+        "test:compare-langflow": "npm run compile:tests && node out/tests/scripts/compare-langflow-imports.js",
+        "test:deploy-hello-flow": "npm run compile:tests && node out/tests/scripts/deploy-hello-flow.js",
+        "test:deploy-example4-flow": "npm run compile:tests && node out/tests/scripts/deploy-example4-flow.js",
+        "test:deploy-adk-flow": "npm run compile:tests && node out/tests/scripts/deploy-adk-hello-flow.js",
+        "test:deploy-plugin-example": "npm run compile:tests && node out/tests/scripts/deploy-plugin-example.js",
+        "deploy:dad-joke-plugin": "npm run compile:tests && node out/tests/scripts/deploy-dad-joke-plugin.js",
+        "test:plugins-on-agent": "npm run compile:tests && node out/tests/scripts/test-plugins-on-agent.js",
+        "test:deploy-generate-artifacts-zip": "npm run compile:tests && node out/tests/scripts/deploy-generate-artifacts-zip.js",
+        "test:verify-generate-artifacts-zip": "npm run compile:tests && node out/tests/scripts/verify-generate-artifacts-zip.js",
+        "test:run-flow-with-agent": "npm run compile:tests && node out/tests/scripts/run-hello-flow.js",
+        "test:upload-python-tool": "npm run compile:tests && node out/tests/scripts/upload-python-tool-example.js",
+        "test:download-python-tool": "npm run compile:tests && node out/tests/scripts/download-python-tool-source.js",
+        "test:deploy-creating-zip": "npm run compile:tests && node out/tests/scripts/deploy-creating-zip-tool.js",
+        "test:import-tool-via-cli": "npm run compile:tests && node out/tests/scripts/import-tool-via-cli.js",
+        "test:import-flow-issue": "npm run compile:tests && node out/tests/scripts/import-flow-issue-test.js",
+        "test:import-simple-flow": "npm run compile:tests && node out/tests/scripts/import-simple-flow-test.js",
+        "test:import-flows-via-cli": "npm run compile:tests && node out/tests/scripts/import-flows-via-cli-test.js",
+        "test:flow-invoke-report": "npm run compile:tests && node out/tests/scripts/test-flow-invoke-report.js",
+        "test:trial-invoke": "npm run compile:tests && node out/tests/scripts/test-trial-invoke.js",
+        "test:trial-invoke:sh": "bash tests/scripts/test-trial-invoke.sh",
+        "test:trial-login": "npm run compile:tests && node out/tests/scripts/test-trial-login.js",
+        "test:system-login": "npm run compile:tests && node out/tests/scripts/test-system-login.js",
+        "test:iam-chat-completions": "bash tests/scripts/test-iam-chat-completions.sh",
+        "test:deploy-python-tool-api": "npm run compile:tests && node out/tests/scripts/deploy-python-tool-api.js",
+        "list-tools": "npm run compile:tests && node out/tests/scripts/list-tools-util.js",
+        "compare-tools": "npm run compile:tests && node out/tests/scripts/compare-tools-lists.js",
+        "compare-tool-schemas": "npm run compile:tests && node out/tests/scripts/compare-tool-schemas.js",
+        "fix-tools": "npm run compile:tests && node out/tests/scripts/fix-tools-for-cli.js",
+        "debug-adk-tools": "python tests/scripts/debug-adk-tools-api.py",
+        "debug-adk-tools-dotenv": "WO_USE_DOTENV=1 python tests/scripts/debug-adk-tools-api.py",
+        "test:create-address-form-agent": "npm run compile:tests && node out/tests/scripts/create-address-form-agent.js",
+        "test:create-name-address-agent": "npm run compile:tests && node out/tests/scripts/create-name-address-agent.js",
+        "test:create-address-tool-agent": "npm run compile:tests && USE_COLLECT_ADDRESS_TOOL=1 node out/tests/scripts/create-address-form-agent.js",
+        "test:create-address-form-from-python": "npm run compile:tests && USE_PYTHON_FORM=1 node out/tests/scripts/create-address-form-agent.js",
+        "test:sync-tz1-tz2": "npm run compile:tests && node out/tests/scripts/sync-tz1-to-tz2.js",
+        "test:validate-openapi-schema": "npm run compile:tests && node out/tests/scripts/validate-openapi-export-schema.js",
+        "test:compare-name-address-agent": "npm run compile:tests && node out/tests/scripts/compare-name-address-agent-tz1-tz2.js",
+        "test:context-variables": "npm run compile:tests && node out/tests/scripts/test-context-variables.js",
+        "test:context-q3": "npm run compile:tests && node out/tests/scripts/test-context-q3.js",
+        "test:deploy-openapi-and-export": "npm run compile:tests && node out/tests/scripts/deploy-openapi-tool-and-export.js",
+        "test:import-openapi-and-export": "npm run compile:tests && node out/tests/scripts/import-openapi-and-export.js",
+        "test:dad-jokes-create-download": "npm run compile:tests && node out/tests/scripts/test-dad-jokes-create-and-download.js",
+        "test:dad-jokes-create-download-tz1": "npm run compile:tests && USE_TZ1=1 node out/tests/scripts/test-dad-jokes-create-and-download.js",
+        "test:crud:agents": "npm run compile:tests && node out/tests/scripts/crud/agents/crud-agents.js",
+        "test:crud:connections": "npm run compile:tests && node out/tests/scripts/crud/connections/crud-connections.js",
+        "test:crud:tools": "npm run compile:tests && node out/tests/scripts/crud/tools/crud-tools.js",
+        "test:crud:toolkits": "npm run compile:tests && node out/tests/scripts/crud/toolkits/crud-toolkits.js",
+        "test:crud:knowledge-bases": "npm run compile:tests && node out/tests/scripts/crud/knowledge-bases/crud-knowledge-bases.js",
+        "test:crud:evaluations": "npm run compile:tests && node out/tests/scripts/crud/evaluations/crud-evaluations.js",
+        "test:crud:flows": "npm run compile:tests && node out/tests/scripts/crud/flows/crud-flows.js",
+        "test:crud:all": "npm run test:crud:agents && npm run test:crud:connections && npm run test:crud:tools && npm run test:crud:toolkits && npm run test:crud:knowledge-bases && npm run test:crud:evaluations && npm run test:crud:flows",
+        "test:ui:export-agent": "npm run compile:tests && node out/tests/scripts/ui-operations/export-agent.js",
+        "test:ui:export-tool": "npm run compile:tests && node out/tests/scripts/ui-operations/export-tool.js",
+        "test:ui:export-toolkit": "npm run compile:tests && node out/tests/scripts/ui-operations/export-toolkit.js",
+        "test:ui:export-knowledge-base": "npm run compile:tests && node out/tests/scripts/ui-operations/export-knowledge-base.js",
+        "test:ui:knowledge-base-editor": "npm run compile:tests && node out/tests/scripts/ui-operations/knowledge-base-editor.js",
+        "test:ui:inspect-agent-run": "npm run compile:tests && node out/tests/scripts/ui-operations/inspect-agent-run.js",
+        "test:ui:recent-traces-agent": "npm run compile:tests && node out/tests/scripts/ui-operations/recent-traces-agent.js",
+        "test:ui:activate-deactivate-skill": "npm run compile:tests && node out/tests/scripts/ui-operations/activate-deactivate-skill.js",
+        "test:ui:import-toolkit": "npm run compile:tests && node out/tests/scripts/ui-operations/import-toolkit.js",
+        "test:ui:all": "npm run test:ui:export-agent && npm run test:ui:export-tool && npm run test:ui:export-toolkit && npm run test:ui:export-knowledge-base && npm run test:ui:knowledge-base-editor && npm run test:ui:inspect-agent-run && npm run test:ui:recent-traces-agent && npm run test:ui:activate-deactivate-skill && npm run test:ui:import-toolkit",
+        "test:object-operations": "npm run test:crud:all && npm run test:ui:all"
+    },
+    "devDependencies": {
+        "@commitlint/cli": "^20.4.1",
+        "@commitlint/config-conventional": "^20.4.1",
+        "@types/adm-zip": "^0.5.7",
+        "@types/archiver": "^7.0.0",
+        "@types/js-yaml": "^4.0.9",
+        "@types/mocha": "^10.0.6",
+        "@types/node": "20.x",
+        "@types/vscode": "^1.85.0",
+        "@typescript-eslint/eslint-plugin": "^6.21.0",
+        "@typescript-eslint/parser": "^6.21.0",
+        "@vscode/test-electron": "^2.3.8",
+        "esbuild": "^0.24.2",
+        "eslint": "^8.57.1",
+        "eslint-config-prettier": "^10.1.8",
+        "eslint-plugin-prettier": "^5.5.5",
+        "glob": "^10.3.10",
+        "husky": "^9.1.7",
+        "lint-staged": "^16.2.7",
+        "mocha": "^10.2.0",
+        "prettier": "^3.8.1",
+        "sharp": "^0.33.5",
+        "typescript": "^5.3.3",
+        "vsce": "^2.15.0"
+    },
+    "dependencies": {
+        "@modelcontextprotocol/sdk": "^1.26.0",
+        "adm-zip": "^0.5.16",
+        "archiver": "^7.0.1",
+        "js-yaml": "^4.1.1"
+    }
+}
